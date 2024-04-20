@@ -39,3 +39,6 @@ Use a tool like `ls /dev/tty*` or `dmesg | grep tty` to find the serial port ass
 python3 rttl-loader.py /dev/ttyUSB0  # Replace with your actual serial port
 ```
 
+## Additional Notes
+
+- The repository contains a large collection of RTTTL files available at [https://github.com/neverfa11ing/FlipperMusicRTTTL]. Most of the files in this repository are working with this module and can fit into a 2Kbit EEPROM space.
