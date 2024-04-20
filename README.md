@@ -41,4 +41,4 @@ python3 rttl-loader.py /dev/ttyUSB0  # Replace with your actual serial port
 
 ## Additional Notes
 
-- The repository contains a large collection of RTTTL files available at [FlipperMusicRTTTL](https://github.com/neverfa11ing/FlipperMusicRTTTL) repository. Most of the files in this repository are working with this module and can fit into a 2Kbit EEPROM space.
+- The repository contains a large collection of RTTTL files available at [FlipperMusicRTTTL](https://github.com/neverfa11ing/FlipperMusicRTTTL). Most of the files in this repository are working with this module and can fit into a 2Kbit EEPROM space.
