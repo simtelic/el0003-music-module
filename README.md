@@ -30,15 +30,17 @@ If `git` is not available, download the source code snapshot from [GitHub](https
 ##### Windows:
 Use a application like *Device Manager* to identify the assigned COM port (e.g., COM3).
 ```
-py rttl-loader.py -p COM5 -m write -f sample.txt # Replace with your actual serial port
+py rttl-loader.py -p COM5 -m write -f sample.txt   # Replace with your actual serial port
 ```
 
 ##### Linux:
 Use a tool like `ls /dev/tty*` or `dmesg | grep tty` to find the serial port assigned to your music module. It's typically named `/dev/ttyUSB0`, but it might vary.
 ```
-python3 rttl-loader.py -p /dev/ttyUSB0 -m write -f sample.txt # Replace with your actual serial port
+python3 rttl-loader.py -p ttyUSB0 -m write -f sample.txt   # Replace with your actual serial port
 ```
 
 ## Additional Notes
 
 - The repository contains a large collection of RTTTL files available at [FlipperMusicRTTTL](https://github.com/neverfa11ing/FlipperMusicRTTTL). Most of the files in this repository are working with this module and can fit into a 2Kbit EEPROM space.
+
+- To access more commands, please check the help section of the `rttl-loader` by typing `rttl-loader --help`.

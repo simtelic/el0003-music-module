@@ -60,7 +60,7 @@ def main():
     comm_port_path = comm_port
     if sys.platform != 'win32':
         comm_port_path = '/dev/' + comm_port
-
+        
     if op_mode == 'write':
         # Read RTTTL data from the specified file.
         rtttl = open(rtttl_file, "r")
