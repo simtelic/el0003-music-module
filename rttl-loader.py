@@ -5,6 +5,7 @@
 # Last updated: 20th April 2024
 # ---------------------------------------------------------------------------
 
+import sys
 import serial
 import time
 import argparse
@@ -35,10 +36,16 @@ def extract_tone_info(rtttl_str):
 
 
 def main():
+    # Set default communication port based on the operating system.
+    if sys.platform == 'win32':
+        default_port = "COM3"
+    else:
+        default_port = "ttyUSB0"
+
     # Commandline argument processor.
     parser = argparse.ArgumentParser(description="Music module - RTTTL file transfer utility.",
                                      formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("-p", "--port", default="ttyUSB0", help="Communication port")
+    parser.add_argument("-p", "--port", default=default_port, help="Communication port")
     parser.add_argument("-m", "--mode", help="Specify the read or write mode", choices=['read', 'write'],
                         default='read')
     parser.add_argument("-f", "--file", help="RTTTL Text file", required=True)
@@ -48,6 +55,11 @@ def main():
     rtttl_file = args["file"]
     comm_port = args["port"]
     op_mode = args["mode"]
+    
+    # Set path of the communication port.
+    comm_port_path = comm_port
+    if sys.platform != 'win32':
+        comm_port_path = '/dev/' + comm_port
 
     if op_mode == 'write':
         # Read RTTTL data from the specified file.
@@ -67,9 +79,9 @@ def main():
         if len(tone_data) > 0xFE:
             print("Specified RTTTL data is too large for EEPROM")
             return
-
+        
         # Open serial connection with the music module.
-        serial_con = serial.Serial(('/dev/' + comm_port), 115200)
+        serial_con = serial.Serial(comm_port_path, 115200)
 
         # Write specified RTTTL data into the music module.
         serial_con.write([0x65])
@@ -85,7 +97,7 @@ def main():
 
     elif op_mode == 'read':
         # Open serial connection with the music module.
-        serial_con = serial.Serial(('/dev/' + comm_port), 115200)
+        serial_con = serial.Serial(comm_port_path, 115200)
 
         # Send read request to the music controller.
         serial_con.write([0x72])
